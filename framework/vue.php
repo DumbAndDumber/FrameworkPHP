@@ -20,6 +20,19 @@ class Vue {
 	public function generer($donnees) {
 		// Génération de la partie spécifique de la vue
 		$contenu = $this->genererFichier($this->fichier, $donnees);
+        foreach ($donnees as $dataType => $donnee) {
+            $i = 0;
+            foreach ($donnee as $id => $object) {
+                if (is_array($object)) {
+                    foreach ($object as $field => $value) {
+                        $contenu = str_replace("{{ ${field}_$i }}", $value, $contenu);
+                    }
+                } else {
+                    $contenu = str_replace("{{ ${id} }}", $object, $contenu);
+                }
+                $i++;
+            }
+        }
 
 		// Génération du gabarit commun utilisant la partie spécifique
 		$vue = $this->genererFichier('vues/gabarit.php',
@@ -31,24 +44,21 @@ class Vue {
 
 	// Génère un fichier vue et renvoie le résultat produit
 	private function genererFichier($fichier, $donnees) {
-		if (file_exists($fichier)) {
-			// Rend les éléments du tableau $donnees accessibles dans la vue
-			extract($donnees);
+		if (!file_exists($fichier)) {
+            throw new Exception("Fichier '$fichier' introuvable");
+        }
+        // Rend les éléments du tableau $donnees accessibles dans la vue
+        // extract($donnees);
 
-			// Démarrage de la temporisation de sortie
-			ob_start();
+        // Démarrage de la temporisation de sortie
+        ob_start();
 
-			// Inclut le fichier vue
-			// Son résultat est placé dans le tampon de sortie
-			require $fichier;
+        // Inclut le fichier vue
+        // Son résultat est placé dans le tampon de sortie
+        require $fichier;
 
-			// Arrêt de la temporisation et renvoi du tampon de sortie
-			return ob_get_clean();
-		}
-
-		else {
-			throw new Exception("Fichier '$fichier' introuvable");
-		}
+        // Arrêt de la temporisation et renvoi du tampon de sortie
+        return ob_get_clean();
 
 	}
 }

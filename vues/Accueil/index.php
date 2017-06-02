@@ -1,12 +1,12 @@
-<?php while ($data = $donnees["article"]->fetch()) { ?>
+<?php for ($i = 0; $i < sizeof($donnees['article']); ++$i) {?>
 	<article>
 		<header>
-			<a href="index.php?controller=article&idArticle=<?php echo $data["Id"] ?>">
-				<h1 class="titreArticle"><?php echo $data["Titre"] ?></h1>
+			<a href="index.php?controller=article&idArticle={{ Id_<?php echo $i; ?> }}">
+				<h1 class="titreArticle">{{ Titre_<?= $i ?> }}</h1>
 			</a>
-			<time><?php echo $data["DatePublication"] ?></time>
+			<time>{{ DatePublication_<?php echo $i; ?> }}</time>
 		</header>
-		<p><?php echo $data["Contenu"] ?></p>
+		<p>{{ Contenu_<?= $i; ?> }}</p>
 		<hr />
 	</article>
 <?php } ?>
