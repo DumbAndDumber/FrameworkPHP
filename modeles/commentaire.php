@@ -10,7 +10,7 @@ class Commentaire extends Modele {
 		// retourne la liste des commentaires
 
 		// utiliser pour cela executerRequete avec la requête SQL
-		return $this->executerRequete("SELECT * FROM commentaire WHERE IdArticle = :id", array("id" => $idArticle));
+		return $this->executerRequete("SELECT * FROM php_commentaire WHERE IdArticle = :id", array("id" => $idArticle));
 
 	}
 
@@ -25,7 +25,7 @@ class Commentaire extends Modele {
 
 		// utiliser pour cela executerRequete avec la requête SQL et $idArticle, $auteur, $contenu et $date en paramètre (attention les paramètres sont sous forme de tableau)
 		$datePublication = date("Y-m-d H:i:s");
-		$this->executerRequete("INSERT INTO commentaire (IdArticle, Auteur, Contenu, DatePublication) VALUES (:id, :auteur, :contenu, :datePublication)", array("id" => $idArticle, "auteur" => $auteur, "contenu" => $contenu, "datePublication" => $datePublication));
+		$this->executerRequete("INSERT INTO php_commentaire (IdArticle, Auteur, Contenu, DatePublication) VALUES (:id, :auteur, :contenu, :datePublication)", array("id" => $idArticle, "auteur" => $auteur, "contenu" => $contenu, "datePublication" => $datePublication));
 
 	}
 }
