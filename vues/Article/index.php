@@ -12,12 +12,11 @@
 </header>
 
 <?php foreach ($donnees['commentaireList'] as $key => $commentaire) { ?>
-	<p>commenté par : <?php echo $commentaire["Auteur"]?></p>
+	<p>commenté par : <?php echo $commentaire["Pseudo"]?></p>
 	<p><?php echo $commentaire["Contenu"]?></p>
 <?php } ?>
 
 <form method="post" action="index.php?controller=article&action=post">
-	<input id="auteur" name="auteur" type="text" placeholder="Votre pseudo" required /><br />
 	<textarea id="txtCommentaire" name="contenu" rows="4" placeholder="Votre commentaire" required>
 	</textarea><br />
 	<input type="hidden" name="id" value="<?php echo $donnees['articleObject']["Id"]?>" />

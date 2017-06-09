@@ -30,12 +30,12 @@ class ControllerArticle extends Controller {
 	}
 
 	// Ajoute un commentaire à un article
-	public function commenter($auteur, $contenu, $idArticle) {
+	public function commenter($contenu, $idArticle) {
 
 		// code à implémenter
 
 		// Sauvegarde du commentaire
-		$this->commentaire->ajouterCommentaire($auteur, $contenu, $idArticle);
+		$this->commentaire->ajouterCommentaire($contenu, $idArticle);
 
 		// Actualisation de l'affichage du l’article
 		header("Location: index.php?controller=article&idArticle=$idArticle");
@@ -46,6 +46,6 @@ class ControllerArticle extends Controller {
 	}
 
 	public function post() {
-		$this->commenter($this->requete->getParametre("auteur"), $this->requete->getParametre("contenu"), $this->requete->getParametre("id"));
+		$this->commenter($this->requete->getParametre("contenu"), $this->requete->getParametre("id"));
 	}
 }

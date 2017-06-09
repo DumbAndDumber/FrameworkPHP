@@ -1,6 +1,5 @@
 <?php
 
-
 class Router {
 	// Route une requête entrante : exécute l'action associée
 	public function routerRequete() {
@@ -25,6 +24,11 @@ class Router {
 			// Première lettre en majuscule
 			$controller = ucfirst(strtolower($controller));
 		}
+
+		if ($this->needLogin($controller)) {
+			$controller = "Utilisateur";
+		}
+
 		// Création du nom du fichier du contrôleur
 		$classeController = "controller" . $controller;
 		$fichierController = "controllers/" . $classeController . ".php";
@@ -40,7 +44,7 @@ class Router {
 	}
 
 	// Détermine l'action à exécuter en fonction de la requête reçue
-	private function creerAction(requete $requete) {
+	private function creerAction(Requete $requete) {
 		$action = "index"; // Action par défaut
 		
 		if ($requete->existeParametre('action')) {
@@ -53,6 +57,11 @@ class Router {
 	private function gererErreur(Exception $exception) {
 		$vue = new Vue('erreur');
 		$vue->generer(array('msgErreur' => $exception->getMessage()));
+	}
+
+	private function needLogin($controller) {
+		return !isset($_SESSION["utilisateur"]) && 
+			in_array($controller, explode(",", Configuration::get("controllersNeedLogin")));
 	}
 }
 ?>

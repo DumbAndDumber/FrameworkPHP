@@ -9,22 +9,23 @@ class Commentaire extends Modele {
 		// retourne la liste des commentaires
 
 		// utiliser pour cela executerRequete avec la requête SQL
-		return $this->executerRequete("SELECT * FROM php_commentaire WHERE IdArticle = :id", array("id" => $idArticle));
+		return $this->executerRequete("SELECT c.Contenu, c.DatePublication, u.Pseudo FROM php_commentaire c INNER JOIN php_utilisateur u ON c.IdUtilisateur = u.Id WHERE c.IdArticle = :id",
+			array("id" => $idArticle));
 
 	}
 
 
 
 	// Ajoute un commentaire dans la base
-	public function ajouterCommentaire($auteur, $contenu, $idArticle) {
+	public function ajouterCommentaire($contenu, $idArticle) {
 
 		// code à implémenter
 
 		// requête d'insert pour ajouter un commentaire'
 
 		// utiliser pour cela executerRequete avec la requête SQL et $idArticle, $auteur, $contenu et $date en paramètre (attention les paramètres sont sous forme de tableau)
-		$datePublication = date("Y-m-d H:i:s");
-		$this->executerRequete("INSERT INTO php_commentaire (IdArticle, Auteur, Contenu, DatePublication) VALUES (:id, :auteur, :contenu, :datePublication)", array("id" => $idArticle, "auteur" => $auteur, "contenu" => $contenu, "datePublication" => $datePublication));
+		$this->executerRequete("INSERT INTO php_commentaire (IdArticle, IdUtilisateur, Contenu) VALUES (:id, :idUtilisateur, :contenu)",
+			array("id" => $idArticle, "idUtilisateur" => $_SESSION["utilisateur"]["Id"], "contenu" => $contenu));
 
 	}
 }
