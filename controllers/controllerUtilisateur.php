@@ -24,7 +24,7 @@ class ControllerUtilisateur extends Controller {
 			header("Location: index.php?controller=utilisateur&loginError=Email ou mot de passe invalide.");
 		}
 		else {
-			$_SESSION["user"] = $login;
+			$_SESSION["utilisateur"] = $login;
 			header("Location: index.php");
 		}
 	}
