@@ -1,5 +1,4 @@
 <?php
-require_once 'framework/modele.php';
 
 class Article extends Modele {
 	// Renvoie la liste des articles du blog

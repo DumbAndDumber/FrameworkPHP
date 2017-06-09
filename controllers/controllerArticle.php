@@ -1,8 +1,4 @@
 <?php
-require_once 'modeles/article.php';
-require_once 'modeles/commentaire.php';
-require_once 'framework/vue.php';
-require_once 'framework/controller.php';
 
 class ControllerArticle extends Controller {
 	private $article;
@@ -53,4 +49,3 @@ class ControllerArticle extends Controller {
 		$this->commenter($this->requete->getParametre("auteur"), $this->requete->getParametre("contenu"), $this->requete->getParametre("id"));
 	}
 }
-?>

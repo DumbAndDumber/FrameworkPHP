@@ -1,5 +1,4 @@
 <?php
-require_once 'framework/configuration.php';
 
 abstract class Modele {
 	// Objet PDO d'accès à la BD

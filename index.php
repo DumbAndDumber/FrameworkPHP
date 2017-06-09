@@ -1,5 +1,5 @@
 <?php
-require 'framework/router.php';
+require 'loader.php';
 
 $router = new Router();
 $router->routerRequete();

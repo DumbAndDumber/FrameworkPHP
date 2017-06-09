@@ -1,6 +1,5 @@
 <?php
-require_once 'requete.php';
-require_once 'vue.php';
+
 
 abstract class Controller {
 	// Action à réaliser

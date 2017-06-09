@@ -1,5 +1,4 @@
 <?php
-require_once 'framework/modele.php';
 
 class Commentaire extends Modele {
 	// Renvoie la liste des commentaires associés à un article
@@ -30,4 +29,3 @@ class Commentaire extends Modele {
 	}
 }
 
-?>
