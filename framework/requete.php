@@ -1,4 +1,5 @@
-<?php
+<?php namespace oss\FrameworkPHP\framework;
+
 class Requete {
 	// paramètres de la requête
 	private $parametres;
@@ -8,7 +9,7 @@ class Requete {
 	}
 
 	// Renvoie vrai si le paramètre existe dans la requête
-	public function existeParametre($nom) {
+	public function existeParametre($nom){
 		return (isset($this->parametres[$nom]) && $this->parametres[$nom] != "");
 	}
 
@@ -19,7 +20,7 @@ class Requete {
 			return $this->parametres[$nom];
 		}
 		else {
-			throw new Exception("Paramètre '$nom' absent de la requête");
+			throw new \Exception("Paramètre '$nom' absent de la requête");
 		}
 	}
 }

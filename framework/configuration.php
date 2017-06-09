@@ -1,4 +1,5 @@
-<?php
+<?php namespace oss\FrameworkPHP\framework;
+
 class Configuration {
 	private static $parameters;
 
@@ -24,7 +25,7 @@ class Configuration {
 			$cheminFichier = "config/$env.ini";
 
 			if (!file_exists($cheminFichier)) {
-				throw new Exception("Aucun fichier de configuration trouvé");
+				throw new \Exception("Aucun fichier de configuration trouvé");
 			}
             self::$parameters = parse_ini_file($cheminFichier);
 		}

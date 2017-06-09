@@ -1,4 +1,5 @@
-<?php
+<?php namespace oss\FrameworkPHP\framework;
+
 class Vue {
 	// Nom du fichier associé à la vue
 	private $fichier;
@@ -45,7 +46,7 @@ class Vue {
 	// Génère un fichier vue et renvoie le résultat produit
 	private function genererFichier($fichier, $donnees) {
 		if (!file_exists($fichier)) {
-            throw new Exception("Fichier '$fichier' introuvable");
+            throw new \Exception("Fichier '$fichier' introuvable");
         }
         // Rend les éléments du tableau $donnees accessibles dans la vue
         // extract($donnees);

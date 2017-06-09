@@ -1,46 +1,43 @@
 <?php
 
+namespace oss\FrameworkPHP\framework;
+
+
 class Router {
 	// Route une requête entrante : exécute l'action associée
 	public function routerRequete() {
 		try {
 			// Fusion des paramètres GET et POST de la requête
-			$requete = new requete(array_merge($_GET, $_POST));
+			$requete = new requete($_REQUEST);
 			$controller = $this->creerController($requete);
 			$action = $this->creerAction($requete);
 			$controller->executerAction($action);
 		}
-		catch (Exception $e) {
+		catch (\Exception $e) {
 			$this->gererErreur($e);
 		}
 	}
 
 	// Crée le contrôleur approprié en fonction de la requête reçue
-	private function creerController(Requete $requete) {
-		$controller = "Accueil"; // Contrôleur par défaut
-
+	private function creerController(Requete $requete) : Controller {
+		$controllerName = "Accueil"; // Contrôleur par défaut
 		if ($requete->existeParametre('controller')) {
-			$controller = $requete->getParametre('controller');
+            $controllerName = $requete->getParametre('controller');
 			// Première lettre en majuscule
-			$controller = ucfirst(strtolower($controller));
+            $controllerName = ucfirst(strtolower($controllerName));
 		}
 
-		if ($this->needLogin($controller)) {
+		if ($this->needLogin($controllerName)) {
 			$controller = "Utilisateur";
 		}
 
 		// Création du nom du fichier du contrôleur
-		$classeController = "controller" . $controller;
-		$fichierController = "controllers/" . $classeController . ".php";
-		if (file_exists($fichierController)) {
+		$classeController = 'oss\FrameworkPHP\controllers\controller' . $controllerName;
 		// Instanciation du contrôleur adapté à la requête
-			$controller = new $classeController();
-			$controller->setRequete($requete);
-			return $controller;
-		}
-		else {
-			throw new Exception("Fichier '$fichierController' introuvable");
-		}
+        /** @var Controller $controller */
+        $controller = new $classeController();
+        $controller->setRequete($requete);
+        return $controller;
 	}
 
 	// Détermine l'action à exécuter en fonction de la requête reçue
@@ -54,7 +51,7 @@ class Router {
 	}
 
 	// Gère une erreur d'exécution (exception)
-	private function gererErreur(Exception $exception) {
+	private function gererErreur(\Exception $exception) {
 		$vue = new Vue('erreur');
 		$vue->generer(array('msgErreur' => $exception->getMessage()));
 	}

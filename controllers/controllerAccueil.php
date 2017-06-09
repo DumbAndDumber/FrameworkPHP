@@ -1,5 +1,8 @@
-<?php
+<?php namespace oss\FrameworkPHP\controllers;
 
+
+use oss\FrameworkPHP\framework\Controller;
+use oss\FrameworkPHP\modeles\Article;
 
 class ControllerAccueil extends Controller {
 	private $article;
