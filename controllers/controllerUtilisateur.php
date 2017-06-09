@@ -1,5 +1,8 @@
-<?php
+<?php namespace oss\FrameworkPHP\controllers;
 
+
+use oss\FrameworkPHP\framework\Controller;
+use oss\FrameworkPHP\modeles\Utilisateur;
 
 class ControllerUtilisateur extends Controller {
 	private $utilisateur;
@@ -37,7 +40,7 @@ class ControllerUtilisateur extends Controller {
 
 			header("Location: index.php?controller=utilisateur&signinError=Vous pouvez désormais vous connecter.");
 		}
-		catch( PDOException $Exception ) {
+		catch( \PDOException $Exception ) {
 			header("Location: index.php?controller=utilisateur&signinError=Cet email ou nom de compte est déjà utilisé");
 		}
 	}

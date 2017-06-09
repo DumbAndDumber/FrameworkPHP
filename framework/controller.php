@@ -1,10 +1,11 @@
-<?php
+<?php namespace oss\FrameworkPHP\framework;
 
 
 abstract class Controller {
 	// Action à réaliser
 	private $action;
 	// Requête entrante
+    /** @var  Requete $requete */
 	protected $requete;
 
 	// Définit la requête entrante
@@ -14,15 +15,13 @@ abstract class Controller {
 
 	// Exécute l'action à réaliser
 	public function executerAction($action) {
-		if (method_exists($this, $action)) {
-			$this->action = $action;
-			$this->{$this->action}();
-		}
-		else {
-			$classeController = get_class($this);
-			throw new Exception("Action '$action' non définie dans la classe $classeController");
-		}
-	}
+		if (!method_exists($this, $action)) {
+            $classeController = get_class($this);
+            throw new \Exception("Action '$action' non définie dans la classe $classeController");
+        }
+        $this->action = $action;
+        $this->{$this->action}();
+    }
 
 	// Méthode abstraite correspondant à l'action par défaut
 	// Oblige les classes dérivées à implémenter cette action par défaut
@@ -32,7 +31,7 @@ abstract class Controller {
 	protected function genererVue($donneesVue = array()) {
 		// Détermination du nom du fichier vue à partir du nom du contrôleur actuel
 		$classeController = get_class($this);
-		$controller = str_replace("Controller", "", $classeController);
+		$controller = str_replace('oss\FrameworkPHP\controllers\Controller', "", $classeController);
 		// Instanciation et génération de la vue
 		$vue = new Vue($this->action, $controller);
 		$vue->generer($donneesVue);

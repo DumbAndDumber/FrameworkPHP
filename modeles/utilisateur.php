@@ -1,4 +1,6 @@
-<?php
+<?php namespace oss\FrameworkPHP\modeles;
+
+use oss\FrameworkPHP\framework\Modele;
 
 class Utilisateur extends Modele {
 	// Renvoie l'utilisateur connecté

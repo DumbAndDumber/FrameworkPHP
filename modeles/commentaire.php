@@ -1,4 +1,6 @@
-<?php
+<?php namespace oss\FrameworkPHP\modeles;
+
+use oss\FrameworkPHP\framework\Modele;
 
 class Commentaire extends Modele {
 	// Renvoie la liste des commentaires associés à un article

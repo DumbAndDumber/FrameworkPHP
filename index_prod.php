@@ -6,9 +6,11 @@
  * Time: 10:06
  */
 
+use oss\FrameworkPHP\framework\Router;
+
 require 'loader.php';
 
-Configuration::setParameters('prod');
+oss\FrameworkPHP\framework\Configuration::setParameters('prod');
 
 
 $router = new Router();
