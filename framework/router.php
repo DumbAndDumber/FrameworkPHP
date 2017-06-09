@@ -1,6 +1,5 @@
 <?php
-require_once 'requete.php';
-require_once 'vue.php';
+
 
 class Router {
 	// Route une requête entrante : exécute l'action associée
@@ -31,7 +30,6 @@ class Router {
 		$fichierController = "controllers/" . $classeController . ".php";
 		if (file_exists($fichierController)) {
 		// Instanciation du contrôleur adapté à la requête
-			require($fichierController);
 			$controller = new $classeController();
 			$controller->setRequete($requete);
 			return $controller;

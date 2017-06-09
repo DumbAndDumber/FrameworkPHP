@@ -1,7 +1,5 @@
 <?php
-require_once 'modeles/utilisateur.php';
-require_once 'framework/vue.php';
-require_once 'framework/controller.php';
+
 
 class ControllerUtilisateur extends Controller {
 	private $utilisateur;

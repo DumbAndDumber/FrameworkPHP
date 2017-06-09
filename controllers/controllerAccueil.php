@@ -1,7 +1,5 @@
 <?php
-require_once 'modeles/article.php';
-require_once 'framework/vue.php';
-require_once 'framework/controller.php';
+
 
 class ControllerAccueil extends Controller {
 	private $article;
@@ -28,4 +26,3 @@ class ControllerAccueil extends Controller {
 		$this->accueil();
 	}
 }
-?>

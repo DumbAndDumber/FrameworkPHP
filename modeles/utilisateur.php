@@ -1,5 +1,4 @@
 <?php
-require_once 'framework/modele.php';
 
 class Utilisateur extends Modele {
 	// Renvoie l'utilisateur connecté
