@@ -20,9 +20,6 @@ class ControllerAccueil extends Controller {
 		// récupérer la liste des articles
 		$this->articleList = $this->article->getArticles();
 
-		// créer la vue Accueil
-		$this->vue = new Vue("index", "accueil");
-
 		// générer la vue
 		$this->genererVue(array("article" => $this->articleList));
 	}

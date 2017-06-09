@@ -28,9 +28,6 @@ class ControllerArticle extends Controller {
 		// récupérer la liste des commentaires
 		$this->commentaireList = $this->commentaire->getCommentaires($idArticle);
 
-		// créer la vue Article
-		$this->vue = new Vue("article", "article");
-
 		// générer la vue
 		$this->genererVue(array("articleObject" => $this->articleObject->fetch(), "commentaireList" => $this->commentaireList));
 
